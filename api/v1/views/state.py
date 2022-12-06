@@ -10,10 +10,12 @@ from models import storage
 from models.state import State
 
 
-@app_views.route('/states')
+@app_views.route('/states', strict_slashes=False)
 def get_all_states():
     '''Returns the json object of all states in storage.'''
-    all_states = storage.all(State)
-    for state in all_states:
-        state = state.to_dict()
-    return jsonify(all_states)
+    state_list = []
+    all_states = storage.all('State')
+    for _state in all_states.values():
+        state_list.append(_state.to_dict()) 
+       
+    return jsonify(state_list)
