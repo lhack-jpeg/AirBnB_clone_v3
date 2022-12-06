@@ -85,4 +85,5 @@ def update_state(state_id):
             pass
         else:
             setattr(one_state, key, value)
+    storage.save()
     return jsonify(one_state.to_dict()), 200
