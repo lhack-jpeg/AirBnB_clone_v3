@@ -85,4 +85,4 @@ def update_state(state_id):
             pass
         else:
             setattr(one_state, key, value)
-    return jsonify(one_state.to_dict()), 201
+    return jsonify(one_state.to_dict()), 200
