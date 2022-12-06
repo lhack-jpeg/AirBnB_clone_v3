@@ -40,7 +40,8 @@ def delete_one_state(state_id):
         abort(404)
 
     storage.delete(result)
-    return Response({}, status=200)
+    storage.save()
+    return jsonify({})
 
 
 @app_views.route('/states', methods=['POST'])
@@ -58,11 +59,11 @@ def create_state():
     '''Create new obj, save to storage and return json obj.'''
     new_state = State(**new_obj)
     storage.new(new_state)
-    storage.save(new_state)
+    storage.save()
     return jsonify(new_state.to_dict())
 
 
-@app_views.route('/states/<state_id>', methods=['POST'])
+@app_views.route('/states/<state_id>', methods=['PUT'])
 def update_state(state_id):
     '''
     Updates state by id. Checks to make sure if it exists.
@@ -79,9 +80,9 @@ def update_state(state_id):
         abort(404)
 
     skip_keys = ['id', 'created_at', 'updated_at']
-    for key, value in new_attributes:
+    for key, value in new_attributes.items():
         if key in skip_keys:
             pass
         else:
-            one_state[key] = value
-    return Response(jsonify(one_state.to_dict()), 200)
+            setattr(one_state, key, value)
+    return jsonify(one_state.to_dict())
