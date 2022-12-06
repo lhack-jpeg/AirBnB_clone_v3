@@ -41,10 +41,10 @@ def delete_one_state(state_id):
 
     storage.delete(result)
     storage.save()
-    return jsonify({})
+    return jsonify({}), 200
 
 
-@app_views.route('/states', methods=['POST'])
+@app_views.route('/states/', methods=['POST'])
 def create_state():
     '''Creates a new state from the http body'''
     new_obj = request.get_json()
@@ -60,7 +60,7 @@ def create_state():
     new_state = State(**new_obj)
     storage.new(new_state)
     storage.save()
-    return jsonify(new_state.to_dict())
+    return jsonify(new_state.to_dict()), 201
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'])
@@ -85,4 +85,4 @@ def update_state(state_id):
             pass
         else:
             setattr(one_state, key, value)
-    return jsonify(one_state.to_dict())
+    return jsonify(one_state.to_dict()), 201
