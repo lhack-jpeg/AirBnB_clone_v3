@@ -5,12 +5,12 @@ state obj.
 '''
 
 from api.v1.views import app_views
-from flask import jsonify
+from flask import jsonify, abort
 from models import storage
 from models.state import State
 
 
-@app_views.route('/states', method='GET')
+@app_views.route('/states', methods=['GET'])
 def get_all_states():
     '''Returns the json object of all states in storage.'''
     state_list = []
@@ -21,10 +21,12 @@ def get_all_states():
     return jsonify(state_list)
 
 
-@app_views.route('/states/<state_id>', method='GET')
+@app_views.route('/states/<state_id>', methods=['GET'])
 def get_one_state(state_id):
     '''Returns the one state in json or else the 404 page.'''
     result = storage.get(State, state_id)
-    print(result)
+    if result is None:
+        abort(404)
 
-    return jsonify({'status': 200})
+    single_state_dict = result.to_dict()
+    return jsonify(single_state_dict)
