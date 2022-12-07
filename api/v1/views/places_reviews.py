@@ -9,25 +9,26 @@ from flask import jsonify, abort, request
 from models import storage
 from models.place import Place
 from models.review import Review
+from models.user import User
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET'])
-def get_place_review(place_id):
+@app_views.route('/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
+def get_places_reviews(place_id):
     '''
     Gets all reviews linked to place id. Raises 404 error if
     place_id is not linked to place obj.
     '''
-    place_list = []
+    review_list = []
     place_obj = storage.get(Place, place_id)
     if place_obj is None:
         abort(404)
     for review in place_obj.reviews:
-        place_list.append(review.to_dict())
+        review_list.append(review.to_dict())
 
-    return jsonify(place_list)
+    return jsonify(review_list)
 
 
-@app_views.route('/reviews/<review_id>', methods=['GET'])
+@app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
 def get_one_review(review_id):
     '''
     Gets one review obj, if none found raises 404.
@@ -40,7 +41,7 @@ def get_one_review(review_id):
     return jsonify(review_obj.to_dict())
 
 
-@app_views.route('/reviews/<review_id>', methods=['DELETE'])
+@app_views.route('/reviews/<review_id>', methods=['DELETE'], strict_slashes=False)
 def delete_review(review_id):
     '''
     Checks to see if review exists before deleting.
@@ -96,7 +97,7 @@ def create_new_place_review(place_id):
     return jsonify(new_review.to_dict()), 201
 
 
-@app_views.route('/reviews/<review_id>', methods=['PUT'])
+@app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def update_city(review_id):
     '''
     Updates a review by review_id with the http body response.
