@@ -35,7 +35,7 @@ def get_one_user(user_id):
 
 
 @app_views.route('/users/<user_id>', methods=['Delete'])
-def get_one_state(user_id):
+def delete_one_user(user_id):
     '''Deletes the one user, raise 404 error if not found'''
     result = storage.get(User, user_id)
     if result is None:
