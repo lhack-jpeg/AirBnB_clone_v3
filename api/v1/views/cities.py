@@ -47,7 +47,7 @@ def delete_city(city_id):
     Returns 404 on error.
     200 on success.
     '''
-    city_obj = storage.get(city_id)
+    city_obj = storage.get(City, city_id)
     if city_obj is None:
         abort(404)
 

@@ -16,9 +16,7 @@ class State(BaseModel, Base):
         name = Column(String(128), nullable=False)
         cities = relationship(
             "City",
-            backref="state",
-            lazy='joined',
-            order_by='City.name')
+            backref="state")
     else:
         name = ""
 
