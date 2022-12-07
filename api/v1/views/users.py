@@ -24,7 +24,7 @@ def get_all_users():
 
 
 @app_views.route('/users/<user_id>', methods=['GET'])
-def get_one_state(user_id):
+def get_one_user(user_id):
     '''Returns the one user in json or else the 404 page.'''
     result = storage.get(User, user_id)
     if result is None:
