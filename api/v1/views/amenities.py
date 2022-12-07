@@ -67,11 +67,8 @@ def create_amenity():
         abort(400, 'Missing name')
 
     '''Create new obj, save to storage and return json object'''
-    amenity_attrs = {}
-    for key, value in amenity_obj.items():
-        if key not in ['id', 'created_at', 'updated_at']:
-            amenity_attrs[key] = amenity_obj[key]
     new_amenity = Amenity(**amenity_obj)
+    storage.new(new_amenity)
     storage.save()
     return jsonify(new_amenity.to_dict(), 201)
 
