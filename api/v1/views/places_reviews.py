@@ -98,7 +98,7 @@ def create_new_place_review(place_id):
 
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
-def update_city(review_id):
+def update_review(review_id):
     '''
     Updates a review by review_id with the http body response.
     Checks to see if reivew exists, else returns 404.
