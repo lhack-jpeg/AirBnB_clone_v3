@@ -76,7 +76,7 @@ def create_city(state_id):
     if new_obj.get('name') is None:
         abort(400, 'Missing name')
 
-    new_obj['state_id'] = state_id
+    new_obj.update({'state_id': state_id})
 
     new_city = City(**new_obj)
     storage.new(new_city)
