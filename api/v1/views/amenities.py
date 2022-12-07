@@ -52,7 +52,7 @@ def delete_amenity(amenity_id):
     return jsonify({}), 200
 
 
-@app_views.route('/amenities/', methods=['POST'])
+@app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_amenity():
     '''
     Creates a new amenity from the http body
