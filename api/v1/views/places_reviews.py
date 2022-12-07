@@ -12,7 +12,8 @@ from models.review import Review
 from models.user import User
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
+@app_views.route('/places/<place_id>/reviews',
+                 methods=['GET'], strict_slashes=False)
 def get_places_reviews(place_id):
     '''
     Gets all reviews linked to place id. Raises 404 error if
@@ -41,7 +42,8 @@ def get_one_review(review_id):
     return jsonify(review_obj.to_dict())
 
 
-@app_views.route('/reviews/<review_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/reviews/<review_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_review(review_id):
     '''
     Checks to see if review exists before deleting.
@@ -78,7 +80,7 @@ def create_new_place_review(place_id):
 
     if new_obj.get('name') is None:
         abort(400, 'Missing name')
-    
+
     if new_obj.get('user_id') is None:
         abort(400, 'Missing user_id')
 
