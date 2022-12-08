@@ -124,7 +124,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_get_obj_existing(self):
-        '''Test get for existing object'''
+        '''Test get method for existing object'''
         storage = FileStorage()
         new_obj = State(name='TEST')
         storage.new(new_obj)
