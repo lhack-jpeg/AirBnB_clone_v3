@@ -87,7 +87,7 @@ def create_new_place_review(place_id):
     if new_obj.get('text') is None:
         abort(400, 'Missing text')
 
-    user_obj = storage.get(User, new_obj.get('user_id'))
+    user_obj = storage.get(User, new_obj['user_id'])
     if user_obj is None:
         abort(404)
 
