@@ -67,9 +67,11 @@ def create_amenity():
         abort(400, 'Missing name')
 
     '''Create new obj, save to storage and return json object'''
-    new_amenity = Amenity(**amenity_obj)
+    new_amenity = Amenity()
+    for key, value in amenity_obj.items():
+        setattr(new_amenity, key, value)
     storage.new(new_amenity)
-    storage.save()
+    new_amenity.save()
     return jsonify(new_amenity.to_dict(), 201)
 
 
