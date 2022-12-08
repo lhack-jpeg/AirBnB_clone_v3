@@ -74,7 +74,7 @@ class DBStorage:
     def get(self, cls, id):
         '''Returns one instance found in the db.'''
         if cls is not None:
-            result = self.__session.query(cls).filter(cls.id == id).first()
+            result = self.__session.query(cls).filter(id == cls.id).first()
             return result
 
     def count(self, cls=None):
