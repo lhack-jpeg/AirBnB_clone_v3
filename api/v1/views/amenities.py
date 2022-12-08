@@ -70,7 +70,7 @@ def create_amenity():
     new_amenity = Amenity(**amenity_obj)
     storage.new(new_amenity)
     storage.save()
-    return jsonify(new_amenity.to_dict(), 201)
+    return jsonify(new_amenity.to_dict()), 201
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'])
