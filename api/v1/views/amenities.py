@@ -57,7 +57,7 @@ def create_amenity():
     '''
     Creates a new amenity from the http body
     '''
-    amenity_obj = request.get_json()
+    amenity_obj = request.get_json(silent=True)
     '''If not json, aborts to a 400 code with message'''
     if amenity_obj is None:
         abort(400, 'Not a JSON')
