@@ -69,7 +69,7 @@ def create_amenity():
     '''Create new obj, save to storage and return json object'''
     new_amenity = Amenity(**amenity_obj)
     storage.new(new_amenity)
-    new_amenity.save()
+    storage.save()
     return jsonify(new_amenity.to_dict(), 201)
 
 
