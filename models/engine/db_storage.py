@@ -76,7 +76,7 @@ class DBStorage:
         if cls is not None:
             result = self.__session.query(cls).filter(cls.id == id).first()
             for obj in result:
-                if id == obj.id
+                if id == obj.id:
                     return obj
 
     def count(self, cls=None):
