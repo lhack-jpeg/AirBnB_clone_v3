@@ -74,8 +74,10 @@ class DBStorage:
     def get(self, cls, id):
         '''Returns one instance found in the db.'''
         if cls is not None:
-            result = self.__session.query(cls).filter(cls.id == id).all()
-            return result
+            result = self.__session.query(cls).all()
+            for object in result:
+                if id == object.id:
+                    return object
         else:
             return None
 
