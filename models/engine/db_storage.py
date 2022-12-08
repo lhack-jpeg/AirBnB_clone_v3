@@ -73,7 +73,7 @@ class DBStorage:
 
     def get(self, cls, id):
         '''Returns one instance found in the db.'''
-        if cls is not None and cls in classes:
+        if cls is not None:
             result = self.__session.query(cls).filter(cls.id == id).first()
             return result
 
