@@ -127,7 +127,8 @@ class TestFileStorage(unittest.TestCase):
         '''Test get for existing object'''
         storage = FileStorage()
         new_obj = State(name='TEST')
-        new_obj.save()
+        storage.new(new_obj)
+        storage.save()
         file_storage_obj = storage.get(State, new_obj.id)
         self.assertTrue(new_obj.id == file_storage_obj.id)
 
