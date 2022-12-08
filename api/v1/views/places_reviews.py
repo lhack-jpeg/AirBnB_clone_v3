@@ -74,7 +74,7 @@ def create_new_place_review(place_id):
     if place_obj is None:
         abort(404)
 
-    new_obj = request.get_json()
+    new_obj = request.get_json(silent=True)
     if new_obj is None:
         abort(400, 'Not a Json')
 
