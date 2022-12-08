@@ -73,8 +73,11 @@ class DBStorage:
 
     def get(self, cls, id):
         '''Returns one instance found in the db.'''
-        result = self.__session.query(cls).filter(cls.id == id).first()
-        return result
+        if cls is not None:
+            result = self.__session.query(cls).filter(cls.id == id).first()
+            return result
+        else:
+            return None
 
     def count(self, cls=None):
         '''Returns a count of cls if passed if not all items from database.'''
