@@ -76,6 +76,8 @@ class DBStorage:
         if cls is not None:
             result = self.__session.query(cls).filter(id == cls.id).first()
             return result
+        else:
+            return None
 
     def count(self, cls=None):
         '''Returns a count of cls if passed if not all items from database.'''
