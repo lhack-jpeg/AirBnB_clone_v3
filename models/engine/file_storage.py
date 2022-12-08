@@ -67,12 +67,13 @@ class FileStorage:
 
     def get(self, cls, id):
         '''Gets one item from filestorage or none if unable to locate.'''
-        cls_dict = self.all(cls).items()
-        for key, value in cls_dict:
-            if id in key:
-                return value
-            else:
-                return None
+        if cls in classes.values():
+            cls_dict = self.all(cls).items()
+            for key, value in cls_dict:
+                if id in key:
+                    return value
+        else:
+            return None
 
     def count(self, cls=None):
         '''
