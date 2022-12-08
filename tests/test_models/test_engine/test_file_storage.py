@@ -123,6 +123,15 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(obj.__class__.__name__, "State")
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    def test_get_obj_existing(self):
+        '''Test get for existing object'''
+        storage = FileStorage()
+        new_obj = State(name='TEST')
+        new_obj.save()
+        file_storage_obj = storage.get(State, new_obj.id)
+        self.assertTrue(new_obj.id == file_storage_obj.id)
+
+    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_count(self):
         '''Test the count method in filestorage.'''
         storage = FileStorage()
