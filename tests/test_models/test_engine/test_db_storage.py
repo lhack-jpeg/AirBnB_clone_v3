@@ -71,14 +71,14 @@ test_db_storage.py'])
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    def setUp(self):
-        """set up for test"""
-        self.db = MySQLdb.connect(getenv("HBNB_MYSQL_HOST"),
-                                  getenv("HBNB_MYSQL_USER"),
-                                  getenv("HBNB_MYSQL_PWD"),
-                                  getenv("HBNB_MYSQL_DB"))
-        self.cursor = self.db.cursor()
+    # @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    # def setUp(self):
+    #     """set up for test"""
+    #     self.db = MySQLdb.connect(getenv("HBNB_MYSQL_HOST"),
+    #                               getenv("HBNB_MYSQL_USER"),
+    #                               getenv("HBNB_MYSQL_PWD"),
+    #                               getenv("HBNB_MYSQL_DB"))
+    #     self.cursor = self.db.cursor()
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def tearDown(self):
