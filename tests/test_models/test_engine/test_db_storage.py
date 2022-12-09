@@ -72,18 +72,18 @@ test_db_storage.py'])
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
 
-    # @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    # def setUp(self):
-    #     """set up for test"""
-    #     self.db = MySQLdb.connect(getenv("HBNB_MYSQL_HOST"),
-    #                               getenv("HBNB_MYSQL_USER"),
-    #                               getenv("HBNB_MYSQL_PWD"),
-    #                               getenv("HBNB_MYSQL_DB"))
-    #     self.cursor = self.db.cursor()
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def setUp(self):
+        """set up for test"""
+        self.db = MySQLdb.connect(getenv("HBNB_MYSQL_HOST"),
+                                  getenv("HBNB_MYSQL_USER"),
+                                  getenv("HBNB_MYSQL_PWD"),
+                                  getenv("HBNB_MYSQL_DB"))
+        self.cursor = self.db.cursor()
 
-    # @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
-    # def tearDown(self):
-    #     self.close()
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def tearDown(self):
+        self.close()
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
@@ -97,22 +97,22 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_new_DBStorage(self):
         """Tests for new() method"""
-    #     nb = self.cursor.execute("SELECT COUNT(*) FROM states")
-    #     s = State(name="NSW")
-    #     storage.new(s)
-    #     storage.save()
-    #     nb1 = self.cursor.execute("SELECT COUNT(*) FROM states")
-    #     self.assertEqual(nb1 - nb, 0)
+        nb = self.cursor.execute("SELECT COUNT(*) FROM states")
+        s = State(name="NSW")
+        storage.new(s)
+        storage.save()
+        nb1 = self.cursor.execute("SELECT COUNT(*) FROM states")
+        self.assertEqual(nb1 - nb, 0)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
-    #     nb = self.cursor.execute("SELECT COUNT(*) FROM states")
-    #     s = State(name="NSW")
-    #     storage.new(s)
-    #     storage.save()
-    #     nb1 = self.cursor.execute("SELECT COUNT(*) FROM states")
-    #     self.assertGreater(nb1, nb)
+        nb = self.cursor.execute("SELECT COUNT(*) FROM states")
+        s = State(name="NSW")
+        storage.new(s)
+        storage.save()
+        nb1 = self.cursor.execute("SELECT COUNT(*) FROM states")
+        self.assertGreater(nb1, nb)
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get(self):
