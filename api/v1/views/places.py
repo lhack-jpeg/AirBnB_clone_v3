@@ -101,7 +101,7 @@ def create_new_place(city_id):
     storage.new(new_place)
     storage.save()
 
-    return jsonify(new_place.to_dict), 201
+    return jsonify(new_place.to_dict()), 201
 
 
 @app_views.route('/places/<place_id>',
